@@ -1,0 +1,61 @@
+A51 MACRO ASSEMBLER  HELLOWORLD                                                           07/06/2017 01:29:42 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02a
+OBJECT MODULE PLACED IN .\Objects\HelloWorld.obj
+ASSEMBLER INVOKED BY: d:\Keil_v5\C51\BIN\A51.EXE source code\HelloWorld.asm SET(SMALL) DEBUG PRINT(.\Listings\HelloWorld
+                      .lst) OBJECT(.\Objects\HelloWorld.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;//点亮LED
+                       2     ;MOV A,#0EFH;存入欲显示灯的位置数据给累加器A    送立即数0xEF
+                       3     ;MOV P2,A;将A的值传给P2
+                       4     ;JMP $;
+                       5     ;END
+                       6     ;//点亮LED
+                       7     ;MOV A,#11101111;存入欲显示灯的位置数据给累加器A
+                       8     ;MOV P2,A;将A的值传给P2
+                       9     ;JMP $;
+                      10     ;END
+                      11     ;//点亮LED
+                      12     ;mov p2,#0EFH;
+                      13     ;jmp $;
+                      14     ;end
+                      15     
+                      16     ;org 000h       //程序起始位置
+                      17     ;jmp led
+                      18     ;led:clr p2.4
+                      19             ;jmp $
+                      20     ;end
+0000 D2A4             21     LOOP: SETB P2.4    ;(1)???
+0002 12000C           22     LCALL DELAY        ;(2)??????
+0005 C2A4             23     CLR P2.4           ;(3)???
+0007 12000C           24     LCALL DELAY        ;(4)??????
+000A 0100             25     AJMP LOOP          ;(5)??????LOOP?
+                      26     ;?????
+000C 7FFA             27     DELAY: MOV R7,#250 ;(6)
+000E 7EFA             28     D1: MOV R6,#250    ;(7)
+0010 DEFE             29     D2: DJNZ R6,D2     ;(8)
+0012 DFFA             30            DJNZ R7,D1  ;(9)
+0014 22               31            RET         ;(10)
+                      32     END                ;(11)
+A51 MACRO ASSEMBLER  HELLOWORLD                                                           07/06/2017 01:29:42 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+D1 . . . . . . . .  C ADDR   000EH   A   
+D2 . . . . . . . .  C ADDR   0010H   A   
+DELAY. . . . . . .  C ADDR   000CH   A   
+LOOP . . . . . . .  C ADDR   0000H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

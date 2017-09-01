@@ -1,0 +1,1 @@
+"source code\HelloWorld.asm" SET (SMALL) DEBUG PRINT(.\Listings\HelloWorld.lst) OBJECT(.\Objects\HelloWorld.obj) EP
